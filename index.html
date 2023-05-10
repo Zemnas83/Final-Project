@@ -4,7 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-    <title>American Universities</title>
+    <title>PG County, MD Libraries</title>
 
     <link
       rel="stylesheet"
@@ -22,17 +22,17 @@
   <body>
     <div class="wrapper">
       <header class="header">
-        <h1>Universities Around the US</h1>
+        <h1>Libraries in PG County, MD</h1>
       <header>
         <div class="container">
           <div class="left_section box">
-            <h2>American Universities</h2>
+            <h2>PG County librarys</h2>
             <form class="box main_form">
-              <button type="button" id="data_load">Load School Data</button>
-              <button type="button" id="data_clear">Clear School Data</button>
+              <button type="button" id="data_load">Load library Data</button>
+              <button type="button" id="data_clear">Clear library Data</button>
               <div>
-                <label for="school">Filter By School Location</label>
-                <input type="text" id="school" name="school" />
+                <label for="library">Filter By Library Location</label>
+                <input type="text" id="library" name="library" />
               </div>
               <button type="button" id="generate" class="hidden">
                 Generate List
@@ -40,11 +40,11 @@
             </form>
           </div>
           <div class="right_section box">
-            <h2>School List</h2>
+            <h2>Library List</h2>
             <div id="map"></div>
             <div class="box">
-              A list of universities in the region
-              <ol id="school_list"></ol>
+              A list of libraries in the county
+              <ol id="library_list"></ol>
             </div>
             <div class="lds-ellipsis" id="data_load_animation">
             </div>

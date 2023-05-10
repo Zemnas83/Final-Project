@@ -7,10 +7,10 @@ function getRandomInt(min, max) {
 
 function injectHTML(list) {
   console.log('fired injectHTML');
-  const target = document.querySelector("#school_list")
+  const target = document.querySelector("#library_list")
   target.innerHTML = '';
   list.forEach((item, index) => {
-    const str = `<li>${item.name}</li>`
+    const str = `<li>${item.branch_name}</li>`
     target.innerHTML += str
   })
 
@@ -18,13 +18,13 @@ function injectHTML(list) {
 
 function filterList(list, query) {
   return list.filter((item) => {
-    const lowerCaseName = item.name.toLowerCase();
+    const lowerCaseName = item.branch_name.toLowerCase();
     const lowerCaseQuery = query.toLowerCase();
     return lowerCaseName.includes(lowerCaseQuery);
   })
 }
 
-function  cutSchoolList(list){
+function  cutLibraryList(list){
   console.log("fired cut list")
   const range = [...Array(15).keys()];
   return newArray = range.map((item) => {
@@ -34,38 +34,13 @@ function  cutSchoolList(list){
 }
 
 function initMap(){
-  const carto = L.map('map').setView([37, -95], 13);
+  const carto = L.map('map').setView([38.98, -76.93], 13);
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  maxZoom: 3,
+  maxZoom: 19,
   attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
   }).addTo(carto);
   return carto;
 }
-
-
-async function getCoordinates(address) {
-  // Replace YOUR_API_KEY with your actual API key
-  const apiKey = 'http://universities.hipolabs.com/search?country=United+States';
-  const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${apiKey}`;
-
-  try {
-    // Make a request to the Geocoding API
-    const response = await fetch(url);
-    const data = await response.json();
-
-    if (data.status === 'OK') {
-      // Extract latitude and longitude from the response
-      const { lat, lng } = data.results[0].geometry.location;
-      return { lat, lng };
-    } else {
-      // Handle the error
-      console.error(`Geocoding failed: ${data.status}`);
-    }
-  } catch (error) {
-    console.error(`Request failed: ${error}`);
-  }
-}
-
 
 
 
@@ -80,9 +55,11 @@ function markerPlace(array, map){
 
   array.forEach((item) => {
       console.log('markerplace', item);
-      console.log(item.name)
+      const {latitude} = item.location_1;
+      const {longitude} = item.location_1;
+      console.log(item.location_1)
 
-      L.marker(getCoordinates(item.name)).addTo(map);
+      L.marker([latitude, longitude]).addTo(map);
   })
 
 }
@@ -95,7 +72,7 @@ async function mainEvent() {
   const loadDataButton = document.querySelector("#data_load");
   const clearDataButton = document.querySelector("#data_clear");
   const generateListButton = document.querySelector('#generate');
-  const textField = document.querySelector('#school');
+  const textField = document.querySelector('#library');
   
   const loadAnimation = document.querySelector("#data_load_animation");
   loadAnimation.style.display = 'none'; 
@@ -109,7 +86,7 @@ async function mainEvent() {
       generateListButton.classList.remove('hidden');
   }
 
-  let schoolList = [];
+  let libraryList = [];
 
 
   loadDataButton.addEventListener('click', async (submitEvent) => { // async has to be declared on every function that needs to "await" something
@@ -118,7 +95,7 @@ async function mainEvent() {
     loadAnimation.style.display = 'inline-block';
 
 
-    const results = await fetch('http://universities.hipolabs.com/search?country=United+States');
+    const results = await fetch('https://data.princegeorgescountymd.gov/resource/7k64-tdwr.json');
 
     // This changes the response from the GET into data we can use - an "object"
     const storedList = await results.json();
@@ -136,15 +113,15 @@ async function mainEvent() {
 
   generateListButton.addEventListener('click', (event) => {
     console.log('generate new list');
-    schoolList = cutSchoolList(parsedData);
-    console.log(schoolList);
-    injectHTML(schoolList);
-    markerPlace(schoolList, carto);
+    libraryList = cutLibraryList(parsedData);
+    console.log(libraryList);
+    injectHTML(libraryList);
+    markerPlace(libraryList, carto);
   })
 
   textField.addEventListener('input', (event)=>{
       console.log('input', event.target.value);
-      const newList = filterList(schoolList, event.target.value)
+      const newList = filterList(libraryList, event.target.value)
       console.log(newList);
       injectHTML(newList);
       markerPlace(newList, carto);
