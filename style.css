@@ -84,6 +84,16 @@ form {
   padding-bottom: 1.5rem;
 }
 
+.header h1 img {
+  height: 60px;
+  width: 60px;
+}
+
+.header .logo {
+  position: relative;
+  float: right;
+  bottom: 12px;
+}
 
 /*
   This rule implies that the H1 tag lives within another HTML tag
@@ -96,7 +106,7 @@ form {
   /* this will push other blocks out of the way */
 
   /* colors */
-  background-color: #ae1320;
+  background-color: #cf3743;
   color: #ffffff;
 
   /* shapes */
@@ -140,14 +150,14 @@ form {
 }
 
 .left_section {
-  background-color: #2d10d0;
+  background-color: #4c3e9e;
   flex: 0 1 auto;
   margin: 1rem;
   padding: 1.5rem;
 }
 
 .right_section {
-  background-color: #1a1ad1;
+  background-color: #3d3da5;
   flex: 1 2 auto;
   margin: 1rem;
   align-items: center;
@@ -156,12 +166,6 @@ form {
   display: flex;
   flex-direction: column;
 }
-
-/*
-  This block is actually dependent on the "container" block having a flex set on it
-  and the "wrapper" block displaying as a flex column with a "vertical height" (vh) of 100.
-  That serves to cram the footer to the bottom of the page.
-*/
 
 .footer {
   flex-shrink: 0;
@@ -176,11 +180,6 @@ form {
   text-decoration: underline;
 }
 
-/*
-  This is an example of a 'pseudoclass'
-  In this instance, it says what to do if a mouse hovers over a link
-  This is pretty desktop-specific, since there's no hover function on touchscreens
-*/
 .footer a:hover {
   /* Hue, saturation, luminosity, alpha */
   background-color: hsla(0, 0%, 90%, 0.15);
@@ -196,43 +195,6 @@ form {
 }
 
 
-/* Deploy this with images as direct "children" and the images should pop into shape */
-.grid {
-  display: flex;
-  justify-content: space-evenly;
-  flex-flow: wrap;
-  width: 350px;
-  height: 350px;
-  margin: 0 auto;
-}
-
-.grid img {
-  width: 150px;
-  height: 150px;
-}
-
-
-/* Carousel */
-div.carousel {
-  max-width: 300px;
-  overflow: hidden;
-  text-align: center;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  margin: 0 auto;
-  margin-bottom: 1rem;
-}
-
-.carousel .slides {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-}
-
 /* .carousel_item, */
 .hidden {
   display: none;
@@ -242,38 +204,8 @@ div.carousel {
   display: block;
 }
 
-.carousel_item img {
-  /* 
-    Setting width, rather than max-width or min-width,
-    means annoying pop-ins won't happen
-    but it also means you need to format your images to be compatible
-    or they will stretch weird
-
-    - try a tall one and see what happens
-    - change the height on a fixed image size and see what happens
-    - now make sure that images are _always_ square
-    - ... there's a reason crop tools are popular in image editors
-   */
-  width: 150px; 
-}
-
-.prev,
-.next {
-  border: none;
-  margin: 2px;
-  text-align: center;
-  border-radius: 5px;
-  font-weight: bold;
-  height: 45px;
-  padding: 10px;
-  line-height: 0; /* This centers a button's text! */
-  border: 2px solid rgb(99,99,99); /* shorthand for how to do a border */
-}
 
 
-/*
-Form Styles
-*/
 
 form input {
     /* This is a hack to make sure our boxes line up with one another nicely */
@@ -312,10 +244,6 @@ form input {
 
   }
 }
-/* 
-    New code bonus: pure CSS data loading icon
-    This comes from loading.io/css - it's nice to show that something is happening!
-*/
 
 .lds-ellipsis {
     display: inline-block;
