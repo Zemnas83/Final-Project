@@ -1,1 +1,1 @@
-# Final-Project
+This visualization provides the user a map that marks various universities across the world. 

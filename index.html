@@ -1,0 +1,55 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <title>American Universities</title>
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+      integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+      crossorigin="" />
+      <link rel="stylesheet" href="style.css" />
+
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+      integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+      crossorigin=""></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <h1>Universities Around the US</h1>
+      <header>
+        <div class="container">
+          <div class="left_section box">
+            <h2>American Universities</h2>
+            <form class="box main_form">
+              <button type="button" id="data_load">Load School Data</button>
+              <button type="button" id="data_clear">Clear School Data</button>
+              <div>
+                <label for="school">Filter By School Location</label>
+                <input type="text" id="school" name="school" />
+              </div>
+              <button type="button" id="generate" class="hidden">
+                Generate List
+              </button>
+            </form>
+          </div>
+          <div class="right_section box">
+            <h2>School List</h2>
+            <div id="map"></div>
+            <div class="box">
+              A list of universities in the region
+              <ol id="school_list"></ol>
+            </div>
+            <div class="lds-ellipsis" id="data_load_animation">
+            </div>
+          </div>
+        </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
