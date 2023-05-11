@@ -84,16 +84,15 @@ form {
   padding-bottom: 1.5rem;
 }
 
-.header h1 img {
+.header img {
+  display: flex;
+  margin-left: auto;
+  margin-top: -40px;
   height: 60px;
   width: 60px;
 }
 
-.header .logo {
-  position: relative;
-  float: right;
-  bottom: 12px;
-}
+
 
 /*
   This rule implies that the H1 tag lives within another HTML tag
